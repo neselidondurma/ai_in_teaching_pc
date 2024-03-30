@@ -6,6 +6,14 @@ dependencies:
   - matplotlib
   - python=3.11  # Specify the Python version you want to use
   - pip
+  - openpyxl
+  - python-dotenv
+  - nltk
   - pip:
-    - openai  # Add openai to the pip section
-
+    - scipy
+    - tenacity
+    - tiktoken  # Ensure this is the correct package name, as "tiktoken" might be a typo
+    - termcolor
+    - openai
+  - jupyter  # Jupyter Notebook package
+  - nb_conda
