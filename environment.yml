@@ -10,10 +10,12 @@ dependencies:
   - python-dotenv
   - nltk
   - pip:
-    - scipy
     - tenacity
     - tiktoken  # Ensure this is the correct package name, as "tiktoken" might be a typo
     - termcolor
     - openai
+    - transformers  # Installing transformers via pip
+    - torch
   - jupyter  # Jupyter Notebook package
   - nb_conda
+  - pytorch

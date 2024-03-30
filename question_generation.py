@@ -3,6 +3,7 @@ from nltk.tokenize import sent_tokenize, word_tokenize
 from nltk.corpus import stopwords
 from nltk.tag import pos_tag
 from nltk.chunk import ne_chunk
+import json
 
 nltk.download('punkt')
 nltk.download('averaged_perceptron_tagger')
@@ -53,7 +54,11 @@ def extract_answers(text, key_phrases):
     return answers
 
 def main():
-    text = """Your input text here."""
+    file_path = 'chapter_1.txt'
+
+    # Read the content of the file
+    with open(file_path, 'r', encoding='utf-8') as file:
+        text = file.read()
 
     # Extract key phrases from the text
     key_phrases = extract_key_phrases(text)
@@ -69,6 +74,12 @@ def main():
         key_phrase = question.split()[2].rstrip('?')  # Simple way to get the key phrase back from the question
         answer = answers.get(key_phrase, "No answer found.")
         print(f"Q: {question}\nA: {answer}\n")
+    # Create a list of dictionaries for each QA pair
+    qa_pairs = [{"question": question, "answer": answers.get(question.split()[2].rstrip('?'), "No answer found.")} for question in questions]
+
+    # Write the QA pairs to a JSON file
+    with open('qa_pairs.json', 'w', encoding='utf-8') as f:
+        json.dump(qa_pairs, f, ensure_ascii=False, indent=4)
 
 if __name__ == "__main__":
     main()
