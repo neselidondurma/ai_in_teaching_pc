@@ -19,3 +19,5 @@ Parameter-efficient fine-tuning with QLoRA
 #After the talk TODO:
 12. Evaluate the Model Qualitatively (Human Evaluation)
 13. Evaluate the Model Quantitatively (with ROUGE Metric)
+
+WE ARE THE WORLD 2
