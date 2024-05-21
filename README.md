@@ -1,6 +1,9 @@
 # ai_in_teaching_pc
 Repository for AI in teaching
 
+#Things done
+You can find the first fine tuned model weights in adapter_model.safetensors file
+
 #TODO:
 Parameter-efficient fine-tuning with QLoRA
 
@@ -20,4 +23,3 @@ Parameter-efficient fine-tuning with QLoRA
 12. Evaluate the Model Qualitatively (Human Evaluation)
 13. Evaluate the Model Quantitatively (with ROUGE Metric)
 
-WE ARE THE WORLD 2
