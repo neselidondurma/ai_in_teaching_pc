@@ -22,6 +22,7 @@ huggingface_token = os.environ.get("HUGGINGFACE_TOKEN")
 print(huggingface_token)
 command = f"huggingface-cli login --token {huggingface_token}"
 os.system(command)
+
 base_model = "mistralai/Mistral-7B-Instruct-v0.2"
 new_model = "serlikopar/Enlighten_Instruct"
 
@@ -40,7 +41,13 @@ base_model_reload = AutoModelForCausalLM.from_pretrained(
         device_map="auto",
         trust_remote_code=True,
 )
-model = PeftModel.from_pretrained(base_model_reload, new_model)
+# model = PeftModel.from_pretrained(base_model_reload, new_model)
+@st.cache(allow_output_mutation=True, suppress_st_warning=True)
+def load_model():
+    model = pipeline('text-generation', model=new_model, tokenizer=tokenizer, max_length=200)
+    return model
+
+pipe = load_model()
 pipe = pipeline(task="text-generation", model=model, tokenizer=tokenizer, max_length=200)
 
 logging.set_verbosity(logging.CRITICAL)
@@ -53,6 +60,9 @@ def get_pipeline():
     return pipeline(task="text-generation", model=model, tokenizer=tokenizer, max_length=200)
 
 pipe = get_pipeline()
+
+
+
 
 st.title('Ich bin Dein physikalisch-chemischer Assistent, stelle mir Eine Frage! ')
 question = st.text_input("Enter your question:")
